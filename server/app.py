@@ -20,9 +20,13 @@ def print_string(parameter):
 def count(parameter):
     # Join each number with \n and add an extra \n at the end for the test
     numbers = "\n".join(str(i) for i in range(parameter)) + "\n"
+    return Response(numbers, mimetype='text/plain')  # Returns numbers in separated lines and passes tests
+
     # return numbers # Passes tests but returned numbers in one line
     # return f"<pre>{numbers}</pre>" # Does not pass tests but numbers return in seperate lines
-    return Response(numbers, mimetype='text/plain')  # Return plain text with numbers in separated lines and passes tests
+    
+    # numbers = "<br>".join(str(i) for i in range(parameter))
+    # return f"<p>{numbers}</p>" # Does not pass tests but numbers return in seperate lines
 
 # Math route
 @app.route('/math/<int:num1>/<string:operation>/<int:num2>')
