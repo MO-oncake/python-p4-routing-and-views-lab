@@ -20,7 +20,9 @@ def print_string(parameter):
 def count(parameter):
     # Join each number with \n and add an extra \n at the end for the test
     numbers = "\n".join(str(i) for i in range(parameter)) + "\n"
-    return Response(numbers, mimetype='text/plain')  # Return plain text with newline-separated numbers
+    # return numbers # Passes tests but returned numbers in one line
+    # return f"<pre>{numbers}</pre>" # Does not pass tests but numbers return in seperate lines
+    return Response(numbers, mimetype='text/plain')  # Return plain text with numbers in separated lines and passes tests
 
 # Math route
 @app.route('/math/<int:num1>/<string:operation>/<int:num2>')
@@ -32,7 +34,7 @@ def math(num1, operation, num2):
     elif operation == '*':
         result = num1 * num2
     elif operation == 'div':
-        result = num1 / num2 if num2 != 0 else "Cannot divide by zero)"
+        result = num1 / num2 if num2 != 0 else "Cannot divide by zero"
     elif operation == '%':
         result = num1 % num2
     else:
